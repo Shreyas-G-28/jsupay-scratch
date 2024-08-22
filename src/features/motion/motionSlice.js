@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   position: { x: 0, y: 0 },
   rotation: 0,
-  history: [], 
+  history: [],
+  action: [],
 };
 
 const motionSlice = createSlice({
@@ -12,22 +13,22 @@ const motionSlice = createSlice({
   reducers: {
     moveForward: (state, action) => {
       state.position.x += action.payload;
-      state.history.push({ type: "moveForward" });
+      state.history.push({ type: "Move 10 Steps Forward" });
     },
     rotateClockwise: (state, action) => {
       state.rotation += action.payload;
-      state.history.push({ type: "rotateClockwise" });
+      state.history.push({ type: "Rotate Clockwise" });
     },
     rotateAntiClockwise: (state, action) => {
       state.rotation -= action.payload;
       state.history.push({
-        type: "rotateAntiClockwise",
+        type: "Rotate Anti-clockwise",
       });
     },
     goToRandomPosition: (state) => {
-      state.position.x = Math.random() * 100; 
+      state.position.x = Math.random() * 100;
       state.position.y = Math.random() * 100;
-      state.history.push({ type: "goToRandomPosition" });
+      state.history.push({ type: "Go To Random Position" });
     },
     clearHistory: (state) => {
       state.history = [];

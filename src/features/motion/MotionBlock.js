@@ -6,7 +6,7 @@ import {
   rotateClockwise,
   rotateAntiClockwise,
   goToRandomPosition,
-} from "../motion/motionSlice";
+} from "./motionSlice";
 import { addToHistory } from "../events/eventsSlice";
 
 const MotionBlock = ({ type, label }) => {
@@ -19,11 +19,12 @@ const MotionBlock = ({ type, label }) => {
       isDragging: !!monitor.isDragging(),
     }),
   });
+
   const handleClick = () => {
     switch (type) {
       case "moveForward":
         dispatch(moveForward(10));
-        dispatch(addToHistory({ type: "Move Forward" }));
+        dispatch(addToHistory({ type: "Move 10 steps forward" }));
         break;
       case "rotateClockwise":
         dispatch(rotateClockwise(15));
@@ -31,7 +32,7 @@ const MotionBlock = ({ type, label }) => {
         break;
       case "rotateAntiClockwise":
         dispatch(rotateAntiClockwise(15));
-        dispatch(addToHistory({ type: "Rotate Anti Clockwise" }));
+        dispatch(addToHistory({ type: "Rotate Anti-clockwise" }));
         break;
       case "goToRandomPosition":
         dispatch(goToRandomPosition());
@@ -41,6 +42,7 @@ const MotionBlock = ({ type, label }) => {
         break;
     }
   };
+
   return (
     <div
       ref={drag}

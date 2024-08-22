@@ -12,7 +12,7 @@ const App = () => {
         <div className="w-1/4 p-4">
           <Sidebar />
         </div>
-        <div className="w-1/4 ">
+        <div className="w-1/4 p-4">
           <DragDropArea />
         </div>
         <div className="w-1/2 p-4">

@@ -11,7 +11,6 @@ import {
   thinkHmm,
   thinkHmmFor4Sec,
 } from "../looks/looksSlice";
-import { ifCondition, repeat, forever } from "../control/controlSlice";
 
 const initialState = {
   events: [],
@@ -30,60 +29,51 @@ export const executeEventActions = createAsyncThunk(
           case "moveForward":
             dispatch(moveForward(20));
             dispatch(
-              addToHistory({ type: "moveForward", payload: action.payload })
+              addToHistory({
+                type: "Move 10 steps forward",
+                payload: action.payload,
+              })
             );
             break;
           case "rotateClockwise":
             dispatch(rotateClockwise(45));
             dispatch(
-              addToHistory({ type: "rotateClockwise", payload: action.payload })
+              addToHistory({
+                type: "Rotate Clockwise",
+                payload: action.payload,
+              })
             );
             break;
           case "rotateAntiClockwise":
             dispatch(rotateAntiClockwise(-45));
             dispatch(
               addToHistory({
-                type: "rotateAntiClockwise",
+                type: "Rotate Anti-clockwise",
                 payload: action.payload,
               })
             );
             break;
           case "goToRandomPosition":
             dispatch(goToRandomPosition());
-            dispatch(addToHistory({ type: "goToRandomPosition" }));
+            dispatch(addToHistory({ type: "Go To Random Position" }));
             break;
           case "sayHello":
             dispatch(sayHello());
-            dispatch(addToHistory({ type: "sayHello" }));
+            dispatch(addToHistory({ type: "Say Hello" }));
             break;
           case "sayHelloFor4Sec":
             dispatch(sayHelloFor4Sec());
-            dispatch(addToHistory({ type: "sayHelloFor4Sec" }));
+            dispatch(addToHistory({ type: "Say Hello For 4Sec" }));
             break;
           case "thinkHmm":
             dispatch(thinkHmm());
-            dispatch(addToHistory({ type: "thinkHmm" }));
+            dispatch(addToHistory({ type: "Think Hmm" }));
             break;
           case "thinkHmmFor4Sec":
             dispatch(thinkHmmFor4Sec());
-            dispatch(addToHistory({ type: "thinkHmmFor4Sec" }));
+            dispatch(addToHistory({ type: "Think Hmm For 4Sec" }));
             break;
-          case "ifCondition":
-            dispatch(ifCondition(action.payload));
-            dispatch(
-              addToHistory({ type: "ifCondition", payload: action.payload })
-            );
-            break;
-          case "repeat":
-            dispatch(repeat(action.payload));
-            dispatch(addToHistory({ type: "repeat", payload: action.payload }));
-            break;
-          case "forever":
-            dispatch(forever(action.payload));
-            dispatch(
-              addToHistory({ type: "forever", payload: action.payload })
-            );
-            break;
+
           default:
             break;
         }

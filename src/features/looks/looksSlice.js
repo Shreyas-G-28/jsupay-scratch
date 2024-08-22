@@ -29,14 +29,14 @@ const looksSlice = createSlice({
   reducers: {
     sayHello: (state) => {
       state.message = "Hello";
-      state.history.push({ type: "sayHello" });
+      state.history.push({ type: "Say Hello" });
     },
     thinkHmm: (state) => {
       state.message = "Hmm...";
-      state.history.push({ type: "thinkHmm" });
+      state.history.push({ type: "Think Hmm" });
     },
     clearMessage: (state) => {
-      state.message = "";
+      return initialState;
     },
     clearHistory: (state) => {
       state.history = [];

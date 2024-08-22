@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearAllEvents, clearHistory } from "../features/events/eventsSlice";
 import { executeEventActions } from "../features/events/eventsSlice";
 import CatSprite from "./CatSprite";
+import redFlag from "./icons/red-flag.png";
 
 const Preview = () => {
   const dispatch = useDispatch();
@@ -10,6 +10,7 @@ const Preview = () => {
   const { message } = useSelector((state) => state.looks);
   const events = useSelector((state) => state.events.events);
   const history = useSelector((state) => state.events.history);
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.code === "Space") {
@@ -29,6 +30,7 @@ const Preview = () => {
     };
   }, [events, dispatch]);
 
+  // Handling Flag Click
   const handleFlagClick = () => {
     const flagEvent = events.find((event) => event.name === "flagClicked");
     console.log(flagEvent, "flagEvent");
@@ -38,7 +40,6 @@ const Preview = () => {
     }
   };
   const spriteRef = useRef(null);
-
 
   useEffect(() => {
     const handleSpriteClick = () => {
@@ -62,11 +63,8 @@ const Preview = () => {
       }
     };
   }, [events, dispatch]);
-  const handleRemoveAllClick = () => {
-    dispatch(clearAllEvents());
-    dispatch(clearHistory());
-  };
 
+  // Handling the sprite click
   const handleSpriteClick = () => {
     events.forEach((event) => {
       if (event.name === "spriteClicked") {
@@ -87,19 +85,15 @@ const Preview = () => {
         <CatSprite />
       </div>
       <div className="absolute bottom-4 text-lg font-semibold">{message}</div>
-      <div className="absolute top-0 right-0 p-4 flex space-x-4">
-        <button
-          onClick={handleFlagClick}
-          className="bg-white-500 text-white p-2 rounded"
-        >
-          🏁
-        </button>
-        <button
-          onClick={handleRemoveAllClick}
-          className="bg-white-500 text-white p-2 rounded"
-        >
-          ❌
-        </button>
+      <div
+        className="absolute w-20 h-20 top-0 right-0 p-4 flex space-x-4"
+        onClick={handleFlagClick}
+      >
+        <img
+          src={redFlag}
+          alt="redFlag"
+          className="bg-white-500 text-white p-2 rounded cursor-pointer"
+        ></img>
       </div>
       <div className="absolute top-0 left-0 p-4 w-fullborder-t border-gray-200 overflow-y-auto ">
         <h4 className="text-lg font-semibold">Action History</h4>
